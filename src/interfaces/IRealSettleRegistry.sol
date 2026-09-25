@@ -51,11 +51,7 @@ interface IRealSettleRegistry {
     event PolicyUpdated(bytes32 indexed assetId, uint64 maxAttestationAge, uint64 maxRedemptionDelay);
     event AssetStatusUpdated(bytes32 indexed assetId, AssetStatus oldStatus, AssetStatus newStatus, bytes32 reasonHash);
     event AttestationAccepted(
-        bytes32 indexed assetId,
-        uint256 indexed nonce,
-        uint64 observedAt,
-        bytes32 evidenceHash,
-        uint256 riskFlags
+        bytes32 indexed assetId, uint256 indexed nonce, uint64 observedAt, bytes32 evidenceHash, uint256 riskFlags
     );
 
     function registerAsset(bytes32 assetId, AssetConfig calldata config) external;
