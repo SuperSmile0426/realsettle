@@ -107,8 +107,9 @@ contract RealSettleRegistryTest is Test {
         _submit(1, 1_000_000e18, 0, 0, uint64(block.timestamp));
 
         IRealSettleRegistry.Attestation memory a = _attestation(1, 1_000_000e18, 0, 0, uint64(block.timestamp));
+        bytes memory signature = _sign(a);
         vm.expectRevert(abi.encodeWithSelector(RealSettleRegistry.InvalidNonce.selector, 2, 1));
-        registry.submitAttestation(a, _sign(a));
+        registry.submitAttestation(a, signature);
     }
 
     function testRiskManagerCanRestrictAsset() public {
@@ -178,7 +179,9 @@ contract RealSettleRegistryTest is Test {
 
         vm.warp(block.timestamp + 1 days + 1);
         vm.prank(user);
-        vm.expectRevert(SettlementCoordinator.NewExposureBlocked.selector);
+        vm.expectRevert(
+            abi.encodeWithSelector(SettlementCoordinator.NewExposureBlocked.selector, RiskFlags.STALE_ATTESTATION)
+        );
         coordinator.requestOperation(
             assetId, SettlementCoordinator.OperationKind.SUBSCRIPTION, 10_000e6, keccak256("sub-002")
         );
