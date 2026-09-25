@@ -14,7 +14,7 @@
 - [x] Machine-readable risk bitmask
 - [x] Reference settlement coordinator
 - [x] New-exposure gating while preserving redemption requests
-- [ ] GitHub Actions verified green
+- [x] GitHub Actions verified green
 - [ ] Pharos test deployment
 
 ## v0.3 — Settlement adapters
