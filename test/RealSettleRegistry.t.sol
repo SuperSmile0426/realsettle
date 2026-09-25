@@ -53,6 +53,7 @@ contract RealSettleRegistryTest is Test {
     bytes32 internal assetId = keccak256("demo-us-credit-fund");
 
     function setUp() public {
+        vm.warp(10 days);
         attester = vm.addr(attesterPk);
         token = new MockSupplyToken(1_000_000e18);
         registry = new RealSettleRegistry(address(this));
