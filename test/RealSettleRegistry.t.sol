@@ -211,8 +211,9 @@ contract RealSettleRegistryTest is Test {
         uint64 oldestPendingRedemptionAt,
         uint64 observedAt
     ) internal {
-        IRealSettleRegistry.Attestation memory a =
-            _attestation(nonce, reportedSupply, outstandingRedemptions, oldestPendingRedemptionAt, observedAt);
+        IRealSettleRegistry.Attestation memory a = _attestation(
+            nonce, reportedSupply, outstandingRedemptions, oldestPendingRedemptionAt, observedAt
+        );
         registry.submitAttestation(a, _sign(a));
     }
 
